@@ -2,12 +2,37 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+// import { setUser } from "../redux/user";
+import { toast } from "sonner";
 
 const TaskList = () => {
+  // const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
   const id = user.id;
   const navigate = useNavigate();
   const [tasks, setTasks] = useState([]);
+
+  // const getUser = async () => {
+  //   try {
+  //     const res = await axios("http://localhost:8000/auth/login/success", {
+  //       withCredentials: true,
+  //     });
+  //     console.log(res.data);
+  //     dispatch(
+  //       setUser({
+  //         ...res.data.user._json,
+  //         _id: res.data._id,
+  //         isAdmin: res.data.user.isAdmin,
+  //       })
+  //     );
+  //   } catch (error) {
+  //     console.log(error, "something went wrong");
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
 
   useEffect(() => {
     if (id) {
@@ -17,13 +42,14 @@ const TaskList = () => {
           withCredentials: true,
         })
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           if (Array.isArray(res.data)) {
             setTasks(res.data);
           } else {
             console.error("error");
           }
         });
+
     }
   }, [id]);
 
@@ -31,6 +57,7 @@ const TaskList = () => {
     try {
       await axios.delete(`http://localhost:8000/api/tasks/delete/${id}`);
       setTasks(tasks.filter((task) => task.id !== id)); //logica [1,2,3,4,5].filter(x => x != 5)
+      toast.success("You have deleted a task!");
     } catch (error) {
       console.log(error);
     }

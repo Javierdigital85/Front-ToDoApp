@@ -1,12 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { toast } from "sonner";
 
 const Register = () => {
   const navigate = useNavigate();
   const [users, setUsers] = useState({
     name: "",
-    age: "",
     email: "",
     password: "",
     profesion: "",
@@ -25,7 +25,6 @@ const Register = () => {
     axios
       .post("http://localhost:8000/api/usuarios/register", {
         name: users.name,
-        age: users.age,
         email: users.email,
         password: users.password,
         profesion: users.profesion,
@@ -35,7 +34,10 @@ const Register = () => {
         console.log("Respuesta del servidor:", res); // Aquí puedes ver la respuesta completa del servidor
         res.data;
       })
-      .then(() => navigate("/"))
+      .then(() => {
+        toast.success("You have registered successfully");
+        navigate("/");
+      })
       // .then(() => {
       //   setUsers({ name: "", age: "", email: "", password: "" });
       // })
@@ -47,83 +49,88 @@ const Register = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center h-screen flex-col">
+      <div className="flex justify-center items-center h-screen">
         <form
           onSubmit={handleSubmit}
-          className="space-y-2 border-gray-300 border p-5 rounded-md"
+          className="bg-gray-300 shadow-md border p-6 w-full max-w-md rounded-lg"
         >
-          <h2 className="mb-4 flex justify-center text-4xl text-slate-200 font-mono">
+          <h2 className="mb-6 text-4xl text-center text-gray-800 font-mono">
             Register
           </h2>
+          <label htmlFor="name" className="font-mono">
+            Name
+          </label>
           <input
             value={users.name}
             type="text"
             name="name"
+            id="name"
             placeholder="name"
             onChange={handleChange}
-            className="block w-full border border-gray-300 rounded px-3 py-1"
+            className="w-full border border-gray-300 rounded-md px-3 py-2 mb-4"
             required
           />
-          <br />
-          <input
-            value={users.age}
-            type="number"
-            name="age"
-            placeholder="age"
-            onChange={handleChange}
-            className="block w-full border border-gray-300 rounded px-3 py-1"
-            required
-          />
-          <br />
+          <label htmlFor="email" className="font-mono">
+            Email
+          </label>
           <input
             value={users.email}
             type="email"
             name="email"
+            id="email"
             placeholder="email"
             onChange={handleChange}
-            className="block w-full border border-gray-300 rounded px-3 py-1"
+            className="w-full border border-gray-300 rounded-md px-3 py-2 mb-4"
             required
           />
-          <br />
+          <label htmlFor="password" className="font-mono">
+            Password
+          </label>
           <input
             type="text"
             value={users.password}
             name="password"
+            id="password"
             placeholder="password"
             onChange={handleChange}
-            className="block w-full border border-gray-300 rounded px-3 py-1"
+            className="w-full border border-gray-300 rounded-md px-3 py-2 mb-4"
             required
           />
-          <br />
+          <label htmlFor="profesion" className="font-mono">
+            Profesion
+          </label>
           <input
             type="text"
             value={users.profesion}
             name="profesion"
+            id="profesion"
             placeholder="profesion"
             onChange={handleChange}
-            className="block w-full border border-gray-300 rounded px-3 py-1"
+            className="w-full border border-gray-300 rounded-md px-3 py-2 mb-4"
             required
           />
-          <br />
+          <label htmlFor="country" className="font-mono">
+            Country
+          </label>
           <input
             type="text"
             value={users.country}
             name="country"
+            id="country"
             placeholder="country"
             onChange={handleChange}
-            className="block w-full border border-gray-300 rounded px-3 py-1"
+            className="w-full border border-gray-300 rounded-md px-3 py-2 mb-4"
             required
           />
           <br />
           <br />
-          <div className="flex justify-center">
-            <button
-              type="submit"
-              className="bg-blue-500 text-white px-4 rounded hover:bg-blue-600"
-            >
-              Enviar
-            </button>
-          </div>
+
+          <button
+            type="submit"
+            className="font-mono mb-4 p-2 w-full bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            Register
+          </button>
         </form>
       </div>
     </>

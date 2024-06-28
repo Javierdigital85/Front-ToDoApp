@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
+import { toast } from "sonner";
 
 const TaskForm = () => {
   const user = useSelector((state) => state.user);
@@ -13,6 +14,13 @@ const TaskForm = () => {
     title: "",
     description: "",
   });
+
+  console.log(task.description, "TASK task");
+  const [originalTask, setOriginalTask] = useState({
+    title: "",
+    description: "",
+  });
+  console.log(originalTask.description, "Original task");
 
   const [loading, setLoading] = useState(false);
   const [editing, setEditing] = useState(false);
@@ -27,6 +35,7 @@ const TaskForm = () => {
       const data = res.data;
       console.log("esta es la data", data);
       setTask({ title: data.title, description: data.description });
+      setOriginalTask({ title: data.title, description: data.description });
       setEditing(true);
     } catch (error) {
       console.log(error);
@@ -34,7 +43,7 @@ const TaskForm = () => {
   };
   useEffect(() => {
     if (params.id) {
-      loadTask(params.id);
+      loadTask(params.id); //esta seteando apenas entramos a la vista a true el editing!
       console.log(params.id);
     }
   }, [params.id]);
@@ -52,6 +61,16 @@ const TaskForm = () => {
     e.preventDefault();
 
     if (editing) {
+      if (
+        task.title === originalTask.title &&
+        task.description === originalTask.description
+      ) {
+        // const error = error.response.data;
+        toast.warning("You have to edit a task");
+        setLoading(false);
+        return;
+        // navigate("/tasklist");
+      }
       axios
         .put(`http://localhost:8000/api/tasks/${params.id}`, {
           title: task.title,
@@ -61,10 +80,10 @@ const TaskForm = () => {
           res.data;
           console.log("lo que me devuelve el update", res.data);
         })
-        .then(() => navigate("/tasklist"))
-        .catch((error) => {
-          console.log(error, "Error en hacer la solicitud");
-        });
+        .then(() => navigate("/tasklist"));
+      toast.success(`You have edited task ${params.id}!`).catch((error) => {
+        console.log(error, "Error en hacer la solicitud");
+      });
     } else {
       axios
         .post(
@@ -85,6 +104,7 @@ const TaskForm = () => {
         })
         .then(() => {
           setLoading(false);
+          toast.success("You have created a task successfully!");
           navigate("/tasklist");
         })
         .catch((error) => console.log(error));
@@ -150,14 +170,17 @@ const TaskForm = () => {
                     />
                   </div>
                 ) : editing ? (
-                  "Editar"
+                  "Edit Task"
                 ) : (
-                  "Crear"
+                  "New Task"
                 )}
               </button>
               <button
                 className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded w-40 ml-5"
-                onClick={() => navigate("/tasklist")}
+                onClick={() => {
+                  navigate("/tasklist"),
+                    toast.info("You has cancel an edition");
+                }}
               >
                 Cancel
               </button>
