@@ -38,12 +38,11 @@ const Register = () => {
         toast.success("You have registered successfully");
         navigate("/");
       })
-      // .then(() => {
-      //   setUsers({ name: "", age: "", email: "", password: "" });
-      // })
-
       .catch((error) => {
-        console.log(error, "error al crear un usuario");
+        if (error.response) {
+          const errorMessage = error.response.data.error.message;
+          toast.warning(errorMessage);
+        }
       });
   };
 

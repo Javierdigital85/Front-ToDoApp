@@ -9,6 +9,7 @@ const TaskForm = () => {
   const user = useSelector((state) => state.user);
   const id = user.id;
   const params = useParams();
+  const taskId = params.id;
   const navigate = useNavigate();
   const [task, setTask] = useState({
     title: "",
@@ -25,11 +26,11 @@ const TaskForm = () => {
   const [loading, setLoading] = useState(false);
   const [editing, setEditing] = useState(false);
 
-  const loadTask = async (id) => {
+  const loadTask = async (taskId) => {
     try {
-      console.log("esta entrando", id);
+      console.log("esta entrando", taskId);
       const res = await axios.get(
-        `http://localhost:8000/api/tasks/obtener/${id}`
+        `http://localhost:8000/api/tasks/obtener-single/${taskId}`
       );
       console.log(res.data, "llega???");
       const data = res.data;
@@ -42,11 +43,11 @@ const TaskForm = () => {
     }
   };
   useEffect(() => {
-    if (params.id) {
-      loadTask(params.id); //esta seteando apenas entramos a la vista a true el editing!
-      console.log(params.id);
+    if (taskId) {
+      loadTask(taskId); //esta seteando apenas entramos a la vista a true el editing!
+      console.log(taskId);
     }
-  }, [params.id]);
+  }, [taskId]);
 
   const handleChange = (e) => {
     setTask({
@@ -72,7 +73,7 @@ const TaskForm = () => {
         // navigate("/tasklist");
       }
       axios
-        .put(`http://localhost:8000/api/tasks/${params.id}`, {
+        .put(`http://localhost:8000/api/tasks/${taskId}`, {
           title: task.title,
           description: task.description,
         })
@@ -81,7 +82,7 @@ const TaskForm = () => {
           console.log("lo que me devuelve el update", res.data);
         })
         .then(() => navigate("/tasklist"));
-      toast.success(`You have edited task ${params.id}!`).catch((error) => {
+      toast.success(`You have edited task ${taskId}!`).catch((error) => {
         console.log(error, "Error en hacer la solicitud");
       });
     } else {
@@ -133,7 +134,7 @@ const TaskForm = () => {
             <input
               onChange={handleChange}
               type="text"
-              id="titulo"
+              id="title"
               name="title"
               value={task.title}
               placeholder="Write your title"
@@ -172,7 +173,7 @@ const TaskForm = () => {
                 ) : editing ? (
                   "Edit Task"
                 ) : (
-                  "New Task"
+                  <p id="new-task-form">New Task</p>
                 )}
               </button>
               <button

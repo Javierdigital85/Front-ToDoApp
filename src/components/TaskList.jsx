@@ -12,33 +12,11 @@ const TaskList = () => {
   const navigate = useNavigate();
   const [tasks, setTasks] = useState([]);
 
-  // const getUser = async () => {
-  //   try {
-  //     const res = await axios("http://localhost:8000/auth/login/success", {
-  //       withCredentials: true,
-  //     });
-  //     console.log(res.data);
-  //     dispatch(
-  //       setUser({
-  //         ...res.data.user._json,
-  //         _id: res.data._id,
-  //         isAdmin: res.data.user.isAdmin,
-  //       })
-  //     );
-  //   } catch (error) {
-  //     console.log(error, "something went wrong");
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   getUser();
-  // }, []);
-
   useEffect(() => {
     if (id) {
       axios
         .get("http://localhost:8000/api/tasks/obtener", {
-          params: { userId: id },
+          params: { usuarioId: id },
           withCredentials: true,
         })
         .then((res) => {
@@ -49,14 +27,13 @@ const TaskList = () => {
             console.error("error");
           }
         });
-
     }
   }, [id]);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async (taskId) => {
     try {
-      await axios.delete(`http://localhost:8000/api/tasks/delete/${id}`);
-      setTasks(tasks.filter((task) => task.id !== id)); //logica [1,2,3,4,5].filter(x => x != 5)
+      await axios.delete(`http://localhost:8000/api/tasks/delete/${taskId}`);
+      setTasks(tasks.filter((task) => task.id !== taskId)); //logica [1,2,3,4,5].filter(x => x != 5)
       toast.success("You have deleted a task!");
     } catch (error) {
       console.log(error);

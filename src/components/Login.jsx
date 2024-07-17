@@ -1,39 +1,18 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { setUser } from "../redux/user";
 import { useDispatch } from "react-redux";
-//import googleButton from "../assets/google_signing_buttons/google.svg";
 import { toast } from "sonner";
-// import GoogleLogin from "react-google-login";
-// import { gapi } from "gapi-script";
-
-//Aqui solo usamos el dispatch y el setUser de redux para avisar al Store que hubo cambios
-
-// const navigate = (url) => {
-//   window.location.href = url;
-// };
-
-// async function auth() {
-//   const response = await axios.post("http://localhost:8000/request");
-//   navigate(response.data.url);
-// }
+import closeEye from "../assets/Eye.svg";
+import openEye from "../assets/OpenEye.svg";
 
 const Login = () => {
-  // const user = useSelector((state) => state.user);
-  // const name = user.name;
-  // const clientId =
-  //   "1065357848546-u8k0oc8ad4aoaamtrnkl0qn8ui6osg2j.apps.googleusercontent.com";
+  const [showPassword, setShowPassword] = useState(false);
 
-  // useEffect(() => {
-  //   gapi.load("client:auth2", () => {
-  //     gapi.auth2.init({ clientId: clientId });
-  //   });
-  // }, []);
-  // const responseGoogle = (response) => {
-  //   console.log(response);
-  //   // props.response(response);
-  // };
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -43,6 +22,10 @@ const Login = () => {
     email: "",
     password: "",
   });
+
+  // const handleInputChange = () => {
+  //   setUsuarios((prevData) => ({ ...prevData }));
+  // };
 
   const handleChange = (e) => {
     setUsuarios({
@@ -64,7 +47,7 @@ const Login = () => {
       )
       .then((res) => {
         dispatch(setUser(res.data));
-        console.log(res, "esto es el res.dataaaa");
+        console.log(res, "esto es el res");
         console.log(res.data, "esto es el res.dataaaa");
       })
       .then(() => {
@@ -85,14 +68,6 @@ const Login = () => {
       });
   };
 
-  // const handleGoogleAuth = () => {
-  //   try {
-  //     window.location.href = "http://localhost:8000/auth/google/callback";
-  //   } catch (error) {
-  //     console.log(error, "Something went wrong");
-  //   }
-  // };
-
   return (
     <>
       <div className="flex justify-center items-center min-h-screen ">
@@ -104,14 +79,14 @@ const Login = () => {
             Login
           </h2>
           <label htmlFor="email" className="ml-1">
-            Email
+            E-mail
           </label>
           <input
             value={usuarios.email}
             type="email"
             id="email"
             name="email"
-            placeholder="email"
+            placeholder="E-mail"
             onChange={handleChange}
             className="w-full border border-gray-300 rounded-md px-3 py-2 mb-4"
             required
@@ -120,52 +95,43 @@ const Login = () => {
           <label htmlFor="password" className="ml-1">
             Password
           </label>
-          <input
-            type="text"
-            value={usuarios.password}
-            id="password"
-            name="password"
-            placeholder="password"
-            onChange={handleChange}
-            className="w-full border border-gray-300 rounded-md px-3 py-2 mb-4"
-            required
-          />
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              value={usuarios.password}
+              id="password"
+              name="password"
+              placeholder="password"
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded-md px-3 py-2 mb-4"
+              required
+            />
+            <div
+              className="absolute inset-y-1 right-0 pr-3 mb-3 flex items-center cursor-pointer"
+              onClick={togglePassword}
+            >
+              {showPassword ? <img src={openEye} /> : <img src={closeEye} />}
+            </div>
+          </div>
           <button
+            id="form-login-button"
             type="submit"
             className="w-full bg-blue-500 text-white px-4 rounded-md py-2 hover:bg-blue-600 mb-4"
           >
             Login
           </button>
-          {/* /// */}
-          {/* <GoogleLogin
-            clientId={clientId}
-            buttonText="Login"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            cookiePolicy={"single_host_origin"}
-          /> */}
-          {/* /// */}
-          {/* <button
-            className="w-full flex flex-row bg-slate-800 items-center justify-center p-2 rounded-md text-white h-10"
-            type="button"
-            onClick={handleGoogleAuth}
-          >
-            <img
-              src={googleButton}
-              alt="sing in button"
-              className="w-6 h-6 mr-2"
-            />
-            Sing in with Google
-          </button> */}
           <button
             className="mt-3 w-full bg-gray-700 hover:bg-gray-800 py-2 text-white rounded-md"
             onClick={() => navigate("/register")}
           >
             Register now
           </button>
-          <p className="mt-4 text-gray-600 text-center cursor-pointer hover:text-blue-600">
+          <Link
+            to={"forgot-password"}
+            className="mt-4 text-gray-600 text-center cursor-pointer hover:text-blue-600"
+          >
             Forgot password?
-          </p>
+          </Link>
           {/* </div> */}
         </form>
       </div>
