@@ -16,7 +16,7 @@ const TaskList = () => {
     if (id) {
       axios
         .get("http://localhost:8000/api/tasks/obtener", {
-          params: { usuarioId: id },
+          params: { userId: id },
           withCredentials: true,
         })
         .then((res) => {
@@ -61,12 +61,14 @@ const TaskList = () => {
                 </div>
                 <div className="flex gap-2 mt-2 md:mt-0 justify-center md:justify-end w-full md:w-auto">
                   <button
+                    id="cypress-edit"
                     className="bg-orange-600 hover:bg-orange-700 w-full text-lg text-white p-2 rounded"
                     onClick={() => navigate(`/tasks/${task.id}`)}
                   >
                     Edit
                   </button>
                   <button
+                    id="cypress-delete"
                     className="bg-red-800 hover:bg-red-900 w-full text-lg text-white p-2 rounded"
                     onClick={() => handleDelete(task.id)}
                   >

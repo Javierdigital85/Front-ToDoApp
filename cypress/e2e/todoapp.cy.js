@@ -7,7 +7,7 @@ describe("To Do App Page", () => {
     cy.request("POST", "http://localhost:8000/api/testing/reset");
     const user = {
       name: "Javier",
-      email: "testing@gmail.com",
+      email: "javier@gmail.com",
       password: "asdf",
       country: "Argentina",
       profesion: "software developer",
@@ -15,11 +15,10 @@ describe("To Do App Page", () => {
     cy.request("POST", "http://localhost:8000/api/usuarios/register", user);
   });
 
-  it("should display login form elements", () => {
+  it("should display login form elements and link to register's url", () => {
     cy.contains("Login"); // Verifica que el texto "Login" esté presente en la página
     cy.get('input[name="email"]').should("exist"); // Verifica que el campo de email esté presente
     cy.get('input[name="password"]').should("exist"); // Verifica que el campo de contraseña esté presente
-    cy.get('button[type="submit"]').should("exist"); // Verifica que el botón de login esté presente
     cy.get('button[type="submit"]').should("exist"); // Verifica que el botón de login esté presente
     // Verifica que el botón "Register now" esté presente y haz clic en él
     cy.get("button").contains("Register now").click();
@@ -27,48 +26,71 @@ describe("To Do App Page", () => {
     cy.url().should("include", "/register");
   });
 
-  it("user can login", () => {
-    cy.get('[placeholder="E-mail"]').type("testing@gmail.com");
-    cy.get('[placeholder="password"]').type("asdf");
-    cy.get("#form-login-button").click();
-    cy.contains("New Task");
-    cy.contains("Task List");
-  });
-
   it("login fails with wrong password", () => {
-    cy.get('[placeholder="E-mail"]').type("testing@gmail.com");
+    cy.get('[placeholder="E-mail"]').type("javier@gmail.com");
     cy.get('[placeholder="password"]').type("wrong-Password");
     cy.get("#form-login-button").click();
     cy.contains("Error de validación");
   });
 
-  describe("when logged in", () => {
-    beforeEach(() => {
-      cy.get('[placeholder="E-mail"]').type("testing@gmail.com");
-      cy.get('[placeholder="password"]').type("asdf");
-      cy.get("#form-login-button").click();
-      cy.contains("New Task");
-      cy.contains("Task List");
+  it("login fails with wrong user", () => {
+    cy.get('[placeholder="E-mail"]').type("userNotExist@gmail.com");
+    cy.get('[placeholder="password"]').type("wrong-Password");
+    cy.get("#form-login-button").click();
+    cy.contains("User does not exist in our data base");
+  });
 
-      //probando esta ruta de abajo sino borrarla
-      // cy.request("POST", "http://localhost:8000/api/usuarios/login", {
-      //   email: "testing@gmail.com",
-      //   password: "asdf",
-      // }).then((res) => {
-      //   // Asegúrate de que el inicio de sesión sea exitoso
-      //   expect(res.status).to.eq(200);
-      //   // Guarda el token en las cookies
-      //   const token = res.body.token;
-      //   expect(token).to.be.a("string");
-      //   cy.setCookie("token", token);
-      // });
+  it("user can login once registered", () => {
+    cy.get('[placeholder="E-mail"]').type("javier@gmail.com");
+    cy.get('[placeholder="password"]').type("asdf");
+    cy.get("#form-login-button").click();
+    cy.contains("New Task");
+    cy.contains("Task List");
+    cy.contains("Welcome").should("exist");
+  });
+
+  describe("when user log in session", () => {
+    beforeEach(() => {
+      cy.login({ email: "javier@gmail.com", password: "asdf" });
     });
-    it("a new task can be created", () => {
+    const createTask = (title, description) => {
       cy.contains("New Task").click({ force: true });
       cy.url().should("include", "/tasks/new");
-      cy.get("#title").type("work");
-      cy.get("#descripcion").type("keep learning Node and testing");
+      cy.get("#title").type(title);
+      cy.get("#descripcion").type(description);
       cy.get("#new-task-form").click();
+    };
+
+    it("a new task can be created", () => {
+      createTask("work", "keep learning testing");
+      cy.contains("work");
+    });
+    it("should edit a task", () => {
+      createTask("work and study", "keep learning and working");
+      // Verifica que la tarea "work" exista antes de intentar editarla
+      cy.contains("work").should("exist");
+      // Haz clic en el botón de editar para la nueva tarea
+      cy.get("#cypress-edit").click();
+      cy.get("#title").clear().type("Home");
+      cy.get("#descripcion")
+        .clear()
+        .type("keep learning Node and testing cafe and clean the dishes");
+      cy.get("#edit-task-form").click();
+      // Verifica que la tarea se haya actualizado correctamente
+      cy.contains("Home");
+      cy.contains("keep learning Node and testing cafe and clean the dishes");
+    });
+
+    it("should delete a task", () => {
+      createTask("work and study", "keep learning and working");
+      cy.get("#cypress-delete").click();
+      cy.contains("You have deleted a task!").should("exist");
+    });
+    it("should log out", () => {
+      cy.contains("Log Out").should("exist");
+      cy.get("#login-cypress").click();
+      cy.contains("You have log out successfully!").should("exist");
+      cy.contains("Login").should("exist");
     });
   });
 });

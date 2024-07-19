@@ -92,6 +92,7 @@ const Navbar = () => {
             <li>
               <>
                 <Link
+                  id="login-cypress"
                   to={"login"}
                   className="hover:text-gray-300"
                   onClick={handleLogout}

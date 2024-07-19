@@ -81,23 +81,23 @@ const TaskForm = () => {
           res.data;
           console.log("lo que me devuelve el update", res.data);
         })
-        .then(() => navigate("/tasklist"));
-      toast.success(`You have edited task ${taskId}!`).catch((error) => {
-        console.log(error, "Error en hacer la solicitud");
-      });
+        .then(
+          () => {
+            toast.success(`You have edited task ${taskId}!`);
+            navigate("/tasklist");
+          },
+          (error) => {
+            console.log(error, "Error en hacer la solicitud");
+            toast.error("Error editing the task");
+          }
+        );
     } else {
       axios
-        .post(
-          "http://localhost:8000/api/tasks/crear",
-          // {
-          //   params: { userId: id },
-          // },
-          {
-            userId: id,
-            title: task.title,
-            description: task.description,
-          }
-        )
+        .post("http://localhost:8000/api/tasks/crear", {
+          userId: id,
+          title: task.title,
+          description: task.description,
+        })
         .then((res) => {
           res.data;
           console.log(res, "sin data");
@@ -171,7 +171,7 @@ const TaskForm = () => {
                     />
                   </div>
                 ) : editing ? (
-                  "Edit Task"
+                  <p id="edit-task-form">Edit Task</p>
                 ) : (
                   <p id="new-task-form">New Task</p>
                 )}
