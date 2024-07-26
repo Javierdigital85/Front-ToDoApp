@@ -29,7 +29,7 @@ const ChangePassword = () => {
     }
     axios
       .put(
-        `http://localhost:8000/api/usuarios/changepassword/${id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/usuarios/changepassword/${id}`,
         {
           oldPassword: formData.oldPassword,
           password: formData.newPassword,

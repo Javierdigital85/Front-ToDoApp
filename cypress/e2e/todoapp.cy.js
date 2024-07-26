@@ -3,23 +3,35 @@
 describe("To Do App Page", () => {
   beforeEach(() => {
     cy.visit("http://localhost:5173"); // Reemplaza con tu URL local
+    cy.get("title").should("exist");
+    cy.title().should("eq", "To Do App");
 
     cy.request("POST", "http://localhost:8000/api/testing/reset");
-    const user = {
-      name: "Javier",
-      email: "javier@gmail.com",
-      password: "asdf",
-      country: "Argentina",
-      profesion: "software developer",
-    };
-    cy.request("POST", "http://localhost:8000/api/usuarios/register", user);
+    cy.fixture("usuarios.json").then((usuarios) => {
+      usuarios.forEach((usuario) => {
+        cy.request(
+          "POST",
+          "http://localhost:8000/api/usuarios/register",
+          usuario
+        );
+      });
+    });
+    // const user = {
+    //   name: "Javier",
+    //   email: "javier@gmail.com",
+    //   password: "asdf",
+    //   country: "Argentina",
+    //   profesion: "software developer",
+    // };
   });
 
   it("should display login form elements and link to register's url", () => {
     cy.contains("Login"); // Verifica que el texto "Login" esté presente en la página
     cy.get('input[name="email"]').should("exist"); // Verifica que el campo de email esté presente
+    cy.get('input[type="email"]').should("have.attr", "placeholder", "E-mail");
     cy.get('input[name="password"]').should("exist"); // Verifica que el campo de contraseña esté presente
     cy.get('button[type="submit"]').should("exist"); // Verifica que el botón de login esté presente
+
     // Verifica que el botón "Register now" esté presente y haz clic en él
     cy.get("button").contains("Register now").click();
     // Verifica que la URL haya cambiado a la página de registro
@@ -41,8 +53,8 @@ describe("To Do App Page", () => {
   });
 
   it("user can login once registered", () => {
-    cy.get('[placeholder="E-mail"]').type("javier@gmail.com");
-    cy.get('[placeholder="password"]').type("asdf");
+    cy.get('[placeholder="E-mail"]').type("sofia@gmail.com");
+    cy.get('[placeholder="password"]').type("qwer");
     cy.get("#form-login-button").click();
     cy.contains("New Task");
     cy.contains("Task List");
@@ -53,8 +65,9 @@ describe("To Do App Page", () => {
     beforeEach(() => {
       cy.login({ email: "javier@gmail.com", password: "asdf" });
     });
+    //funcion que crea los tasks
     const createTask = (title, description) => {
-      cy.contains("New Task").click({ force: true });
+      cy.contains("New Task").click();
       cy.url().should("include", "/tasks/new");
       cy.get("#title").type(title);
       cy.get("#descripcion").type(description);
@@ -65,6 +78,7 @@ describe("To Do App Page", () => {
       createTask("work", "keep learning testing");
       cy.contains("work");
     });
+
     it("should edit a task", () => {
       createTask("work and study", "keep learning and working");
       // Verifica que la tarea "work" exista antes de intentar editarla
@@ -86,11 +100,19 @@ describe("To Do App Page", () => {
       cy.get("#cypress-delete").click();
       cy.contains("You have deleted a task!").should("exist");
     });
-    it("should log out", () => {
+
+    it("should log out and disable protected routes", () => {
       cy.contains("Log Out").should("exist");
       cy.get("#login-cypress").click();
       cy.contains("You have log out successfully!").should("exist");
       cy.contains("Login").should("exist");
+      cy.visit("http://localhost:5173/tasks/new");
+      cy.url().should("include", "/");
+      cy.contains(
+        "You must be registered and logged in to use the Application."
+      );
+      cy.get("button").contains("Login here!");
+      cy.contains("button", "Login here!").click();
     });
   });
 });

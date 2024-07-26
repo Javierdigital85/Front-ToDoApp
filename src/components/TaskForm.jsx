@@ -30,7 +30,7 @@ const TaskForm = () => {
     try {
       console.log("esta entrando", taskId);
       const res = await axios.get(
-        `http://localhost:8000/api/tasks/obtener-single/${taskId}`
+        `${import.meta.env.VITE_BACKEND_URL}/api/tasks/obtener-single/${taskId}`
       );
       console.log(res.data, "llega???");
       const data = res.data;
@@ -73,7 +73,7 @@ const TaskForm = () => {
         // navigate("/tasklist");
       }
       axios
-        .put(`http://localhost:8000/api/tasks/${taskId}`, {
+        .put(`${import.meta.env.VITE_BACKEND_URL}/api/tasks/${taskId}`, {
           title: task.title,
           description: task.description,
         })
@@ -81,19 +81,20 @@ const TaskForm = () => {
           res.data;
           console.log("lo que me devuelve el update", res.data);
         })
-        .then(
-          () => {
-            toast.success(`You have edited task ${taskId}!`);
-            navigate("/tasklist");
-          },
-          (error) => {
-            console.log(error, "Error en hacer la solicitud");
-            toast.error("Error editing the task");
+        .then(() => {
+          toast.success(`You have edited task ${taskId}!`);
+          navigate("/tasklist");
+        })
+        .catch((error) => {
+          console.log(error, "Error en hacer la solicitud");
+          if (error.response) {
+            const errorMessage = error.response.data;
+            toast.error(errorMessage);
           }
-        );
+        });
     } else {
       axios
-        .post("http://localhost:8000/api/tasks/crear", {
+        .post(`${import.meta.env.VITE_BACKEND_URL}/api/tasks/crear`, {
           userId: id,
           title: task.title,
           description: task.description,
@@ -171,9 +172,9 @@ const TaskForm = () => {
                     />
                   </div>
                 ) : editing ? (
-                  <p id="edit-task-form">Edit Task</p>
+                  <button id="edit-task-form">Edit Task</button>
                 ) : (
-                  <p id="new-task-form">New Task</p>
+                  <button id="new-task-form">New Task</button>
                 )}
               </button>
               <button

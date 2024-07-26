@@ -15,7 +15,7 @@ const TaskList = () => {
   useEffect(() => {
     if (id) {
       axios
-        .get("http://localhost:8000/api/tasks/obtener", {
+        .get(`${import.meta.env.VITE_BACKEND_URL}/api/tasks/obtener`, {
           params: { userId: id },
           withCredentials: true,
         })
@@ -32,7 +32,9 @@ const TaskList = () => {
 
   const handleDelete = async (taskId) => {
     try {
-      await axios.delete(`http://localhost:8000/api/tasks/delete/${taskId}`);
+      await axios.delete(
+        `${import.meta.env.VITE_BACKEND_URL}/api/tasks/delete/${taskId}`
+      );
       setTasks(tasks.filter((task) => task.id !== taskId)); //logica [1,2,3,4,5].filter(x => x != 5)
       toast.success("You have deleted a task!");
     } catch (error) {
@@ -88,7 +90,7 @@ const TaskList = () => {
       ) : (
         <div className="flex justify-center items-center flex-col text-white h-screen">
           <h1 className="font-mono text-2xl mb-4">Welcome to my TO-DO-APP</h1>
-          <p className="mb-4 text-2xl text-red-700 font-mono">
+          <p className=" mb-4 text-2xl text-red-700 font-mono">
             You must be registered and logged in to use the Application.
           </p>
           <button

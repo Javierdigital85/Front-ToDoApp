@@ -23,7 +23,7 @@ const Register = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:8000/api/usuarios/register", {
+      .post(`${import.meta.env.VITE_BACKEND_URL}/api/usuarios/register`, {
         name: users.name,
         email: users.email,
         password: users.password,
@@ -39,8 +39,11 @@ const Register = () => {
         navigate("/");
       })
       .catch((error) => {
+        console.log(error.response.data, "inicio error");
         if (error.response) {
-          const errorMessage = error.response.data.error.message;
+          const errorMessage = error.response.data;
+          console.log(error.response);
+          console.log("error", errorMessage);
           toast.warning(errorMessage);
         }
       });

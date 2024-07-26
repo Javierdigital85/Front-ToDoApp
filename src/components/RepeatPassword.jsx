@@ -38,12 +38,16 @@ const RepeatPassword = () => {
     if (formData.password === formData.repeatPassword) {
       axios
         .get(
-          `http://localhost:8000/api/usuarios/usuario/validate-token/${token}`
+          `${
+            import.meta.env.VITE_BACKEND_URL
+          }/api/usuarios/usuario/validate-token/${token}`
         )
         .then((res) => {
           const user = res.data;
           axios.post(
-            `http://localhost:8000/api/usuarios/overwrite-password/${user.id}`,
+            `${
+              import.meta.env.VITE_BACKEND_URL
+            }/api/usuarios/overwrite-password/${user.id}`,
             {
               password: formData.password,
             }

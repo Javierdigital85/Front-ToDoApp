@@ -38,7 +38,7 @@ const Login = () => {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:8000/api/usuarios/login",
+        `${import.meta.env.VITE_BACKEND_URL}/api/usuarios/login`,
         {
           email: usuarios.email,
           password: usuarios.password,

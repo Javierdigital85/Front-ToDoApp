@@ -17,7 +17,9 @@ const ForgotPassword = () => {
       console.log("please, enter a email!");
     }
     axios
-      .put("http://localhost:8000/api/usuarios/forgotpassword", { email })
+      .put(`${import.meta.env.VITE_BACKEND_URL}/api/usuarios/forgotpassword`, {
+        email,
+      })
       .then((res) => {
         if (res.status === 200) {
           sendEmailSubmitted(true);

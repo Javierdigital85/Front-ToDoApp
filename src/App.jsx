@@ -19,7 +19,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/usuarios/me", {
+      .get(`${import.meta.env.VITE_BACKEND_URL}/api/usuarios/me`, {
         withCredentials: true,
       })
       .then((res) => res.data)

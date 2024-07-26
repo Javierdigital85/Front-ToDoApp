@@ -1,0 +1,605 @@
+[
+  {
+    "name": "Javier",
+    "email": "javier@gmail.com",
+    "password": "asdf",
+    "country": "Argentina",
+    "profesion": "software developer"
+  },
+  {
+    "name": "Sofia",
+    "email": "sofia@gmail.com",
+    "password": "qwer",
+    "country": "Belgica",
+    "profesion": "pilot"
+  },
+  {
+    "name": "Lucas",
+    "email": "lucas@gmail.com",
+    "password": "abcd",
+    "country": "Argentina",
+    "profesion": "graphic designer"
+  },
+  {
+    "name": "Maria",
+    "email": "maria@gmail.com",
+    "password": "efgh",
+    "country": "Argentina",
+    "profesion": "teacher"
+  },
+  {
+    "name": "Carlos",
+    "email": "carlos@gmail.com",
+    "password": "ijkl",
+    "country": "Chile",
+    "profesion": "architect"
+  },
+  {
+    "name": "Laura",
+    "email": "laura@gmail.com",
+    "password": "mnop",
+    "country": "Uruguay",
+    "profesion": "engineer"
+  },
+  {
+    "name": "Daniel",
+    "email": "daniel@gmail.com",
+    "password": "qrst",
+    "country": "Peru",
+    "profesion": "doctor"
+  },
+  {
+    "name": "Ana",
+    "email": "ana@gmail.com",
+    "password": "uvwx",
+    "country": "Colombia",
+    "profesion": "nurse"
+  },
+  {
+    "name": "Fernando",
+    "email": "fernando@gmail.com",
+    "password": "yzab",
+    "country": "Paraguay",
+    "profesion": "chef"
+  },
+  {
+    "name": "Valentina",
+    "email": "valentina@gmail.com",
+    "password": "cdef",
+    "country": "Argentina",
+    "profesion": "journalist"
+  },
+  {
+    "name": "Mateo",
+    "email": "mateo@gmail.com",
+    "password": "ghij",
+    "country": "Argentina",
+    "profesion": "scientist"
+  },
+  {
+    "name": "Isabella",
+    "email": "isabella@gmail.com",
+    "password": "klmn",
+    "country": "Chile",
+    "profesion": "musician"
+  },
+  {
+    "name": "Sebastian",
+    "email": "sebastian@gmail.com",
+    "password": "opqr",
+    "country": "Bolivia",
+    "profesion": "photographer"
+  },
+  {
+    "name": "Camila",
+    "email": "camila@gmail.com",
+    "password": "stuv",
+    "country": "Argentina",
+    "profesion": "librarian"
+  },
+  {
+    "name": "Julian",
+    "email": "julian@gmail.com",
+    "password": "wxyz",
+    "country": "Uruguay",
+    "profesion": "biologist"
+  },
+  {
+    "name": "Paula",
+    "email": "paula@gmail.com",
+    "password": "abcd",
+    "country": "Peru",
+    "profesion": "graphic designer"
+  },
+  {
+    "name": "Santiago",
+    "email": "santiago@gmail.com",
+    "password": "efgh",
+    "country": "Colombia",
+    "profesion": "web developer"
+  },
+  {
+    "name": "Gabriela",
+    "email": "gabriela@gmail.com",
+    "password": "ijkl",
+    "country": "Argentina",
+    "profesion": "social worker"
+  },
+  {
+    "name": "Alejandro",
+    "email": "alejandro@gmail.com",
+    "password": "mnop",
+    "country": "Paraguay",
+    "profesion": "architect"
+  },
+  {
+    "name": "Natalia",
+    "email": "natalia@gmail.com",
+    "password": "qrst",
+    "country": "Chile",
+    "profesion": "accountant"
+  },
+  {
+    "name": "Martín",
+    "email": "martin@gmail.com",
+    "password": "uvwx",
+    "country": "Bolivia",
+    "profesion": "pharmacist"
+  },
+  {
+    "name": "Evelyn",
+    "email": "evelyn@gmail.com",
+    "password": "yzab",
+    "country": "Colombia",
+    "profesion": "physicist"
+  },
+  {
+    "name": "Ricardo",
+    "email": "ricardo@gmail.com",
+    "password": "cdef",
+    "country": "Argentina",
+    "profesion": "software engineer"
+  },
+  {
+    "name": "Jazmín",
+    "email": "jazmin@gmail.com",
+    "password": "ghij",
+    "country": "Uruguay",
+    "profesion": "designer"
+  },
+  {
+    "name": "Tomás",
+    "email": "tomas@gmail.com",
+    "password": "1234",
+    "country": "Argentina",
+    "profesion": "software engineer"
+  },
+  {
+    "name": "Marta",
+    "email": "marta@gmail.com",
+    "password": "5678",
+    "country": "Chile",
+    "profesion": "chemist"
+  },
+  {
+    "name": "Esteban",
+    "email": "esteban@gmail.com",
+    "password": "9101",
+    "country": "Uruguay",
+    "profesion": "mechanic"
+  },
+  {
+    "name": "Valeria",
+    "email": "valeria@gmail.com",
+    "password": "1121",
+    "country": "Colombia",
+    "profesion": "educator"
+  },
+  {
+    "name": "Ricardo",
+    "email": "ricardo2@gmail.com",
+    "password": "3141",
+    "country": "Peru",
+    "profesion": "journalist"
+  },
+  {
+    "name": "Luisa",
+    "email": "luisa@gmail.com",
+    "password": "5161",
+    "country": "Paraguay",
+    "profesion": "nurse"
+  },
+  {
+    "name": "Joaquín",
+    "email": "joaquin@gmail.com",
+    "password": "7181",
+    "country": "Argentina",
+    "profesion": "economist"
+  },
+  {
+    "name": "Carmen",
+    "email": "carmen@gmail.com",
+    "password": "9202",
+    "country": "Bolivia",
+    "profesion": "designer"
+  },
+  {
+    "name": "Emilia",
+    "email": "emilia@gmail.com",
+    "password": "2233",
+    "country": "Chile",
+    "profesion": "marketing specialist"
+  },
+  {
+    "name": "Sebastián",
+    "email": "sebastian2@gmail.com",
+    "password": "4455",
+    "country": "Argentina",
+    "profesion": "web designer"
+  },
+  {
+    "name": "Gabriel",
+    "email": "gabriel@gmail.com",
+    "password": "6677",
+    "country": "Uruguay",
+    "profesion": "photographer"
+  },
+  {
+    "name": "Florencia",
+    "email": "florencia@gmail.com",
+    "password": "8899",
+    "country": "Peru",
+    "profesion": "architect"
+  },
+  {
+    "name": "Ignacio",
+    "email": "ignacio@gmail.com",
+    "password": "0011",
+    "country": "Colombia",
+    "profesion": "doctor"
+  },
+  {
+    "name": "Sofía",
+    "email": "sofia2@gmail.com",
+    "password": "2233",
+    "country": "Paraguay",
+    "profesion": "teacher"
+  },
+  {
+    "name": "Alejandra",
+    "email": "alejandra@gmail.com",
+    "password": "4455",
+    "country": "Bolivia",
+    "profesion": "scientist"
+  },
+  {
+    "name": "Mateo",
+    "email": "mateo2@gmail.com",
+    "password": "6677",
+    "country": "Chile",
+    "profesion": "engineer"
+  },
+  {
+    "name": "Natalia",
+    "email": "natalia2@gmail.com",
+    "password": "8899",
+    "country": "Argentina",
+    "profesion": "developer"
+  },
+  {
+    "name": "Ángel",
+    "email": "angel@gmail.com",
+    "password": "0011",
+    "country": "Uruguay",
+    "profesion": "chemist"
+  },
+  {
+    "name": "Mónica",
+    "email": "monica@gmail.com",
+    "password": "2233",
+    "country": "Peru",
+    "profesion": "pharmacist"
+  },
+  {
+    "name": "Javier",
+    "email": "javier2@gmail.com",
+    "password": "4455",
+    "country": "Colombia",
+    "profesion": "developer"
+  },
+  {
+    "name": "Carlos",
+    "email": "carlos2@gmail.com",
+    "password": "6677",
+    "country": "Paraguay",
+    "profesion": "mechanic"
+  },
+  {
+    "name": "Lorena",
+    "email": "lorena@gmail.com",
+    "password": "8899",
+    "country": "Bolivia",
+    "profesion": "photographer"
+  },
+  {
+    "name": "Alejandro",
+    "email": "alejandro2@gmail.com",
+    "password": "0011",
+    "country": "Chile",
+    "profesion": "chef"
+  },
+  {
+    "name": "Laura",
+    "email": "laura2@gmail.com",
+    "password": "2233",
+    "country": "Argentina",
+    "profesion": "biologist"
+  },
+  {
+    "name": "Fernando",
+    "email": "fernando2@gmail.com",
+    "password": "4455",
+    "country": "Uruguay",
+    "profesion": "social worker"
+  },
+  {
+    "name": "Paula",
+    "email": "paula2@gmail.com",
+    "password": "6677",
+    "country": "Peru",
+    "profesion": "engineer"
+  },
+  {
+    "name": "Martín",
+    "email": "martin2@gmail.com",
+    "password": "8899",
+    "country": "Colombia",
+    "profesion": "designer"
+  },
+  {
+    "name": "Emilia",
+    "email": "emilia2@gmail.com",
+    "password": "0011",
+    "country": "Paraguay",
+    "profesion": "artist"
+  },
+  {
+    "name": "Joaquín",
+    "email": "joaquin2@gmail.com",
+    "password": "2233",
+    "country": "Bolivia",
+    "profesion": "journalist"
+  },
+  {
+    "name": "Gabriela",
+    "email": "gabriela2@gmail.com",
+    "password": "4455",
+    "country": "Chile",
+    "profesion": "teacher"
+  },
+  {
+    "name": "Camila",
+    "email": "camila2@gmail.com",
+    "password": "6677",
+    "country": "Argentina",
+    "profesion": "developer"
+  },
+  {
+    "name": "Ricardo",
+    "email": "ricardo3@gmail.com",
+    "password": "8899",
+    "country": "Uruguay",
+    "profesion": "developer"
+  },
+  {
+    "name": "Tomás",
+    "email": "tomas2@gmail.com",
+    "password": "0011",
+    "country": "Peru",
+    "profesion": "scientist"
+  },
+  {
+    "name": "Santiago",
+    "email": "santiago2@gmail.com",
+    "password": "2233",
+    "country": "Colombia",
+    "profesion": "musician"
+  },
+  {
+    "name": "Marta",
+    "email": "marta2@gmail.com",
+    "password": "4455",
+    "country": "Paraguay",
+    "profesion": "social worker"
+  },
+  {
+    "name": "Lucas",
+    "email": "lucas2@gmail.com",
+    "password": "6677",
+    "country": "Bolivia",
+    "profesion": "photographer"
+  },
+  {
+    "name": "Agustín",
+    "email": "agustin@gmail.com",
+    "password": "1234",
+    "country": "Argentina",
+    "profesion": "software engineer"
+  },
+  {
+    "name": "Juliana",
+    "email": "juliana@gmail.com",
+    "password": "5678",
+    "country": "Chile",
+    "profesion": "architect"
+  },
+  {
+    "name": "Sergio",
+    "email": "sergio@gmail.com",
+    "password": "9101",
+    "country": "Uruguay",
+    "profesion": "teacher"
+  },
+  {
+    "name": "Natalia",
+    "email": "natalia_unique@gmail.com",
+    "password": "1121",
+    "country": "Colombia",
+    "profesion": "journalist"
+  },
+
+  {
+    "name": "Lucía",
+    "email": "lucia@gmail.com",
+    "password": "abcd",
+    "country": "Argentina",
+    "profesion": "historian"
+  },
+  {
+    "name": "Mateo",
+    "email": "mateo3@gmail.com",
+    "password": "efgh",
+    "country": "Chile",
+    "profesion": "philosopher"
+  },
+  {
+    "name": "Valeria",
+    "email": "valeria2@gmail.com",
+    "password": "ijkl",
+    "country": "Paraguay",
+    "profesion": "entrepreneur"
+  },
+  {
+    "name": "Nicolás",
+    "email": "nicolas@gmail.com",
+    "password": "mnop",
+    "country": "Uruguay",
+    "profesion": "biotechnologist"
+  },
+  {
+    "name": "Camila",
+    "email": "camila3@gmail.com",
+    "password": "qrst",
+    "country": "Peru",
+    "profesion": "statistician"
+  },
+  {
+    "name": "Diego",
+    "email": "diego@gmail.com",
+    "password": "uvwx",
+    "country": "Colombia",
+    "profesion": "sociologist"
+  },
+  {
+    "name": "Ana",
+    "email": "ana2@gmail.com",
+    "password": "yzab",
+    "country": "Bolivia",
+    "profesion": "librarian"
+  },
+  {
+    "name": "Fernando",
+    "email": "fernando3@gmail.com",
+    "password": "cdef",
+    "country": "Chile",
+    "profesion": "politician"
+  },
+  {
+    "name": "Javier",
+    "email": "javier3@gmail.com",
+    "password": "ghij",
+    "country": "Paraguay",
+    "profesion": "data analyst"
+  },
+  {
+    "name": "Marta",
+    "email": "marta3@gmail.com",
+    "password": "wxyz",
+    "country": "Argentina",
+    "profesion": "pediatrician"
+  },
+  {
+    "name": "Ricardo",
+    "email": "ricardo4@gmail.com",
+    "password": "1234",
+    "country": "Colombia",
+    "profesion": "urban planner"
+  },
+  {
+    "name": "Gabriela",
+    "email": "gabriela3@gmail.com",
+    "password": "5678",
+    "country": "Uruguay",
+    "profesion": "journalist"
+  },
+  {
+    "name": "Joaquín",
+    "email": "joaquin3@gmail.com",
+    "password": "9101",
+    "country": "Bolivia",
+    "profesion": "film director"
+  },
+  {
+    "name": "Sofia",
+    "email": "sofia3@gmail.com",
+    "password": "1121",
+    "country": "Peru",
+    "profesion": "chef"
+  },
+  {
+    "name": "Julian",
+    "email": "julian2@gmail.com",
+    "password": "3141",
+    "country": "Chile",
+    "profesion": "artist"
+  },
+  {
+    "name": "Carmen",
+    "email": "carmen2@gmail.com",
+    "password": "5161",
+    "country": "Argentina",
+    "profesion": "tour guide"
+  },
+  {
+    "name": "Evelyn",
+    "email": "evelyn2@gmail.com",
+    "password": "7181",
+    "country": "Paraguay",
+    "profesion": "educator"
+  },
+  {
+    "name": "Lucas",
+    "email": "lucas3@gmail.com",
+    "password": "9202",
+    "country": "Bolivia",
+    "profesion": "translator"
+  },
+  {
+    "name": "Natalia",
+    "email": "natalia3@gmail.com",
+    "password": "2233",
+    "country": "Chile",
+    "profesion": "public relations"
+  },
+  {
+    "name": "Agustín",
+    "email": "agustin2@gmail.com",
+    "password": "4455",
+    "country": "Uruguay",
+    "profesion": "musician"
+  },
+  {
+    "name": "Isabella",
+    "email": "isabella2@gmail.com",
+    "password": "6677",
+    "country": "Peru",
+    "profesion": "scientist"
+  },
+  {
+    "name": "Alejandro",
+    "email": "alejandro3@gmail.com",
+    "password": "8899",
+    "country": "Colombia",
+    "profesion": "photographer"
+  }
+]
