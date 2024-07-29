@@ -2,16 +2,21 @@
 
 describe("To Do App Page", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:5173"); // Reemplaza con tu URL local
+    cy.visit(
+      "https://front-to-do-ii9jlxdij-lorenzo-javiers-projects.vercel.app"
+    ); // Reemplaza con tu URL local
     cy.get("title").should("exist");
     cy.title().should("eq", "To Do App");
 
-    cy.request("POST", "http://localhost:8000/api/testing/reset");
+    cy.request(
+      "POST",
+      "https://back-todoapp-9pni.onrender.com/api/testing/reset"
+    );
     cy.fixture("usuarios.json").then((usuarios) => {
       usuarios.forEach((usuario) => {
         cy.request(
           "POST",
-          "http://localhost:8000/api/usuarios/register",
+          "https://back-todoapp-9pni.onrender.com/api/usuarios/register",
           usuario
         );
       });
