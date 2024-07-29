@@ -13,7 +13,7 @@ const Navbar = () => {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:8000/api/usuarios/logout",
+        `${import.meta.env.VITE_BACKEND_URL}/api/usuarios/logout`,
         {
           name: user,
         },
