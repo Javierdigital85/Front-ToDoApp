@@ -27,7 +27,7 @@ function App() {
         dispatch(setUser(user));
       })
       .catch((error) => (error, "error al loguearse"));
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>

@@ -3,7 +3,7 @@
 describe("To Do App Page", () => {
   beforeEach(() => {
     cy.visit(
-      "https://front-to-do-ii9jlxdij-lorenzo-javiers-projects.vercel.app"
+      "https://front-todoapp.onrender.com"
     ); // Reemplaza con tu URL local
     cy.get("title").should("exist");
     cy.title().should("eq", "To Do App");
