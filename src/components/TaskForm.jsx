@@ -43,10 +43,8 @@ const TaskForm = () => {
     }
   };
   useEffect(() => {
-    if (taskId) {
-      loadTask(taskId); //esta seteando apenas entramos a la vista a true el editing!
-      console.log(taskId);
-    }
+    if (taskId) loadTask(taskId); //esta seteando apenas entramos a la vista a true el editing!
+    console.log(taskId);
   }, [taskId]);
 
   const handleChange = (e) => {

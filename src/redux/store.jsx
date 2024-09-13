@@ -1,11 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { userReducer } from "./user";
-import { googleUserReducer } from "./googleUser";
 
 const store = configureStore({
   reducer: {
     user: userReducer,
-    googleUser: googleUserReducer,
   },
 });
 

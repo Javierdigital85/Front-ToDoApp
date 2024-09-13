@@ -42,15 +42,16 @@ const RepeatPassword = () => {
             import.meta.env.VITE_BACKEND_URL
           }/api/usuarios/usuario/validate-token/${token}`
         )
-        .then((res) => {
-          const user = res.data;
+        .then(() => {
+          // const user = res.data;
           axios.post(
             `${
               import.meta.env.VITE_BACKEND_URL
-            }/api/usuarios/overwrite-password/${user.id}`,
+            }/api/usuarios/overwrite-password/${token}`,
             {
               password: formData.password,
-            }
+            },
+            { withCredentials: true }
           );
         })
         .then(() => {

@@ -47,8 +47,8 @@ const Login = () => {
       )
       .then((res) => {
         dispatch(setUser(res.data));
-        console.log(res, "esto es el res");
-        console.log(res.data, "esto es el res.dataaaa");
+        console.log( "esto es el res:",res,);
+        console.log( "esto es el res.dataaaa:",res.data,);
       })
       .then(() => {
         navigate("/tasklist");

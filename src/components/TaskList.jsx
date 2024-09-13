@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 // import { setUser } from "../redux/user";
-import { toast } from "sonner";
+import TaskItem from "./TaskItem";
+import { useNavigate } from "react-router-dom";
 
 const TaskList = () => {
   // const dispatch = useDispatch();
@@ -30,16 +30,8 @@ const TaskList = () => {
     }
   }, [id]);
 
-  const handleDelete = async (taskId) => {
-    try {
-      await axios.delete(
-        `${import.meta.env.VITE_BACKEND_URL}/api/tasks/delete/${taskId}`
-      );
-      setTasks(tasks.filter((task) => task.id !== taskId)); //logica [1,2,3,4,5].filter(x => x != 5)
-      toast.success("You have deleted a task!");
-    } catch (error) {
-      console.log(error);
-    }
+  const handleDeleteTask = (taskId) => {
+    setTasks(tasks.filter((task) => task.id !== taskId)); //logica [1,2,3,4,5].filter(x => x != 5)
   };
 
   return (
@@ -51,33 +43,7 @@ const TaskList = () => {
           </h1>
           {tasks.length > 0 ? (
             tasks.map((task) => (
-              <div
-                key={task.id}
-                className="mb-5 bg-slate-700 p-5 flex flex-col md:flex-row justify-between items-start md:items-center rounded-md"
-              >
-                <div>
-                  <h2 className="text-white">Title: {task.title}</h2>
-                  <p className="text-gray-400">
-                    Description: {task.description}
-                  </p>
-                </div>
-                <div className="flex gap-2 mt-2 md:mt-0 justify-center md:justify-end w-full md:w-auto">
-                  <button
-                    id="cypress-edit"
-                    className="bg-orange-600 hover:bg-orange-700 w-full text-lg text-white p-2 rounded"
-                    onClick={() => navigate(`/tasks/${task.id}`)}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    id="cypress-delete"
-                    className="bg-red-800 hover:bg-red-900 w-full text-lg text-white p-2 rounded"
-                    onClick={() => handleDelete(task.id)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
+              <TaskItem key={task.id} task={task} onDelete={handleDeleteTask} />
             ))
           ) : (
             <>
@@ -106,3 +72,5 @@ const TaskList = () => {
 };
 
 export default TaskList;
+
+// Otra opcion es hacer un taskItem en donde haces un map de taskItem.jsx
